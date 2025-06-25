@@ -1,0 +1,58 @@
+{
+    "seed_url": "https://ruscorpora.ru/search?search=CnkiUwpRChgKB3RhZ2dpbmcSDQoLYXV0b3xtYW51YWwKNQoQdGV4dF9vcnRob2dyYXBoeRIhCh/QndC%2B0LLQsNGPINC%2B0YDRhNC%2B0LPRgNCw0YTQuNGPKhsKCAgAEAoYMiAKEAUgAEAFagQwLjk1eACgAQEyAggBOgEG",
+    "search_settings": {
+        "perf": "(indic | imper | imper2 | cond | inf) & pf",
+        "impf": "(indic | imper | imper2 | cond | inf) & ipf"
+    },
+    "x_paths":
+    {
+        "search_input": "//*[@id='lexgramm-search-panel']/div[4]/div/div/button[1]",
+        "settings_input": "/html/body/div[1]/div[2]/main/div/div[2]/div[1]/div/div/ul/li[3]/div[2]/div[3]/div/div[4]/div/div/div[2]/input",
+        "word_elements": ".hit.word",
+        "modal_close": "/html/body/div[6]/div/div/div/div[1]/div[1]/button",
+        "next_page_button": ".ant-pagination-next:not(.ant-pagination-disabled)"
+    },
+    "css_selectors":
+    {
+        "set_search_button": "#rnc-spa > div.search-result-filters-sticky > div > div > div > div.col.col-5.col-md-4.col-lg-3 > ul > li:nth-child(2) > button",
+        "txts_on_page": "#de04453c-8eea-469f-8acf-4ad88bf1cfa0",
+        "occurrences_in_txt": "#bad0a7b5-fc8e-4de6-83ea-25bd2249246f",
+        "apply_button": "#paginationSettingsOverlay > div > div.ant-dropdown-menu__footer > div > button.button--color-colored.default.button--mode-default.button",
+        "main_analysis": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(1) > td.explain-table__des",
+        "main_analysis_title": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(1) > td.explain-table__title.text-uppercase",
+        "lemma": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(2) > td.explain-table__des > span.plain",
+        "lemma_title": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(2) > td.explain-table__title > span",
+        "grammar": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(3) > td.explain-table__des > span > i",
+        "grammar_title": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(3) > td.explain-table__title > span",
+        "semantics": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(4) > td.explain-table__des > span > i",
+        "semantics_title": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(4) > td.explain-table__title > span",
+        "related_words": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(5) > td.explain-table__des > span > i",
+        "related_words_title": "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div.explain-table.explain-table--words.explain-table--main-parsing > table > tr:nth-child(5) > td.explain-table__title > span.is-neural-label",
+        "syntactic_properties":
+        [
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(2) > table > tr:nth-child(1) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(1) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(2) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(6) > table > tr:nth-child(1) > td.explain-table__des > span > i"
+        ],
+        "syntactic_properties_title": [
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(2) > table > tr:nth-child(1) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(1) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(2) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(6) > table > tr:nth-child(1) > td.explain-table__title > span"
+        ],
+        "additional_features": [
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(2) > table > tr:nth-child(2) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(2) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(3) > td.explain-table__des > span > i",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(6) > table > tr:nth-child(2) > td.explain-table__des > span > i"
+        ],
+        "additional_features_title": [
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(2) > table > tr:nth-child(2) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(2) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(3) > table > tr:nth-child(3) > td.explain-table__title > span",
+            "body > div.vfm.vfm--fixed.vfm--inset.modal-container > div > div > div > div.explain > div.explain__content > div:nth-child(6) > table > tr:nth-child(2) > td.explain-table__title > span"
+        ]
+    },
+    "timeout": 6
+}

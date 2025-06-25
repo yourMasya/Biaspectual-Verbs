@@ -26,24 +26,20 @@ def main():
         config_path = Path('config/scrapper_config.json')
         scrapper = FacadeAPI(config_path=config_path)
 
-        with open('biaspectives_relevant_list.txt', 'r', encoding='utf-8') as file:
-            words = file.read().split()
+        with open('dict_articles_urls.json', 'r', encoding='utf-8') as file:
+            articles_urls = json.load(file)
+            words = articles_urls.keys()
 
+        aspects = ["perf", "impf"]
         for word in words:
             print(f"Processing word: {word}")
-            perfective_data, imperfective_data, both_posssible = scrapper.process_word(word)
-
-            with open(os.path.join(
-                    output_dir, f'{word}_perf.json'), 'w', encoding='utf-8') as f:
-                json.dump(perfective_data, f, ensure_ascii=False, indent=4)
-
-            with open(os.path.join(
-                    output_dir, f'{word}_imp.json'), 'w', encoding='utf-8') as f:
-                json.dump(imperfective_data, f, ensure_ascii=False, indent=4)
-
-            with open(os.path.join(
-                    output_dir, f'{word}_both.json'), 'w', encoding='utf-8') as f:
-                json.dump(both_posssible, f, ensure_ascii=False, indent=4)
+            for aspect in aspects:
+                print(f"Current aspect: {aspect}")
+                occurrences = scrapper.process_word(word, aspect=aspect)
+                if occurrences:
+                    with open(os.path.join(
+                            output_dir, f'{word}_{aspect}.json'), 'w', encoding='utf-8') as f:
+                        json.dump(occurrences, f, ensure_ascii=False, indent=4)
 
     except FileNotFoundError as fnf_error:
         print(f"File not found error: {fnf_error}")

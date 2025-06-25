@@ -30,7 +30,7 @@ class FacadeAPI:
         self.driver = init_driver(self.config.get("headless", True))
         self.scrapper = Scrapper(self.driver, self.config)
 
-    def process_word(self, word: str) -> (
+    def process_word(self, word: str, aspect: str) -> (
             Optional)[Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]]:
         """
         Processes a given word using the Scrapper to collect relevant data.
@@ -45,6 +45,7 @@ class FacadeAPI:
         try:
             self.scrapper.navigate_to_search()
             self.scrapper.input_word(word)
+            self.scrapper.input_search_settings(self.config["search_settings"][aspect])
             # self.scrapper.set_page_size()
             return self.scrapper.collect_data(word)
         except WebDriverException as e:

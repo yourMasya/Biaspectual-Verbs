@@ -54,7 +54,7 @@ class PageExtractor:
         """
         self.browser = browser
         self.base_url = base_url
-        self.wait = WebDriverWait(self.browser.driver, 15) # Adjust timeout as needed
+        self.wait = WebDriverWait(self.browser.driver, 15)
         self.verb_dict_articles: Dict[str, str] = {}
 
     def _extract_verbs_from_page(self) -> Dict[str, str]:
@@ -157,7 +157,6 @@ class MorphonologyExtractor:
         finally:
             self.browser.quit()
             print('Dataset created')
-        # обработай ошибку, если всё полетит и датасет не создастя
 
     def save_results(self, filename: str) -> None:
         """Saves the extracted morphonology dictionary as a JSON file."""
@@ -176,10 +175,10 @@ if __name__ == "__main__":
     page_extractor = PageExtractor(browser, base_url)
     page_extractor.extract_biaspectives()
     page_extractor.save_results('dict_articles_urls.json')
-    morphonology_extractor = MorphonologyExtractor(browser, 'dict_articles_urls.json')
+    morphonology_extractor = MorphonologyExtractor(browser, 'biaspectual_data/dict_articles_urls.json')
     morphonology_extractor.parse_morphonology_dataset()
-    morphonology_extractor.save_results('morphonology_dataset.json')
-    with open('biaspectives_relevant_list.txt', 'w', encoding='utf-8') as f:
+    morphonology_extractor.save_results('biaspectual_data/morphonology_dataset.json')
+    with open('biaspectual_data/biaspectives_relevant_list.txt', 'w', encoding='utf-8') as f:
         for word in morphonology_extractor.morphonology_dataset:
             print(word['лемма'], file=f)
 

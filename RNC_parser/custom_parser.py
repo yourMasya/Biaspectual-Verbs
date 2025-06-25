@@ -58,9 +58,6 @@ class Parser:
         try:
             return self.wait.until(EC.visibility_of_element_located(
                 (By.CSS_SELECTOR, self.config["css_selectors"]["main_analysis"]))).text.strip()
-            # print(el.is_displayed())
-            # print(el.is_enabled())
-            # print(el.text)
         except (NoSuchElementException, TimeoutException) as e:
             print(f"Error extracting main analysis: {e}")
             return None

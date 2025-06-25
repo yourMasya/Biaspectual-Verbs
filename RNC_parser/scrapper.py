@@ -56,12 +56,26 @@ class Scrapper:
                 EC.visibility_of_element_located((By.CLASS_NAME, "the-input__input")))
             input_element.clear()
             input_element.send_keys(word)
+        except (NoSuchElementException, TimeoutException, WebDriverException) as e:
+            print(f"Error in input_word: {e}")
+
+    def input_search_settings(self, query: str):
+        """
+        Inputs a word into the search field and initiates the search.
+
+        Args:
+            word (str): The word to search for.
+        """
+        try:
+            input_element = self.wait.until(
+                EC.visibility_of_element_located((By.XPATH, self.config["x_paths"]["settings_input"])))
+            input_element.clear()
+            input_element.send_keys(query)
             search_button = self.driver.find_element(
                 By.XPATH, self.config["x_paths"]["search_input"])
             search_button.click()
         except (NoSuchElementException, TimeoutException, WebDriverException) as e:
             print(f"Error in input_word: {e}")
-
 
     # def set_page_size(self):
     #     """
@@ -93,7 +107,6 @@ class Scrapper:
     #     except (NoSuchElementException, TimeoutException, WebDriverException) as e:
     #         print(f"Error in input_word: {e}")
 
-
     def collect_data(self, word: str) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]]]:
         """
         Collects data from the search results pages for the given word.
@@ -105,25 +118,16 @@ class Scrapper:
             Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
             Collected perfective and imperfective forms data.
         """
-        perfective, imperfective, both_possible = [], [], []
+        biasp_occurrences = []
         page_number = 1
-        while page_number <= 10:
+        while page_number <= 50:
             print(f"Processing page: {page_number}")
             try:
                 hit_word_elements = self.wait.until(
                     EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".hit.word")))
                 for i, element in enumerate(hit_word_elements, start=1):
                     word_data = self.process_element(element, i)
-                    if word_data and word_data.get('грамматика') and "глагол" in word_data.get('грамматика'):
-                        if ("несовершенный" in word_data['грамматика'] and
-                                " совершенный" not in word_data['грамматика']):
-                            imperfective.append(word_data)
-                        elif (" совершенный" in word_data['грамматика'] and
-                              "несовершенный" not in word_data['грамматика']):
-                            perfective.append(word_data)
-                        elif ("несовершенный" in word_data['грамматика'] and
-                              " совершенный" in word_data['грамматика']):
-                            both_possible.append(word_data)
+                    biasp_occurrences.append(word_data)
 
                 if not self.go_to_next_page():
                     break
@@ -131,7 +135,7 @@ class Scrapper:
             except (NoSuchElementException, TimeoutException, WebDriverException) as e:
                 print(f"Error on page {page_number} for '{word}': {e}")
                 break
-        return perfective, imperfective, both_possible
+        return biasp_occurrences
 
     def process_element(self, element, position: int) -> Optional[Dict[str, Any]]:
         """
@@ -155,11 +159,11 @@ class Scrapper:
                 "словоформа": element.text,
                 "лемма": self.parser.extract_lemma(),
                 "контекст": self.parser.extract_context(position),
-                "грамматика": self.parser.extract_grammar(),
-                "семантика": self.parser.extract_semantics(),
-                "похожие слова": self.parser.extract_related_words(),
-                "синтаксические свойства слова": self.parser.extract_syntactic_properties(),
-                "доп. признаки": self.parser.extract_additional_features()
+                "грамматика": self.parser.extract_grammar()
+                # "семантика": self.parser.extract_semantics(),
+                # "похожие слова": self.parser.extract_related_words(),
+                # "синтаксические свойства слова": self.parser.extract_syntactic_properties(),
+                # "доп. признаки": self.parser.extract_additional_features()
             }
         except (NoSuchElementException, TimeoutException, WebDriverException) as e:
             print(f"Error processing element: {e}")
